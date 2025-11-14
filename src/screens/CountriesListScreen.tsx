@@ -1,66 +1,65 @@
-// src/screens/CountriesListScreen.tsx
-import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  ActivityIndicator,
-  Text,
-  StyleSheet
-} from "react-native";
+import React from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/AppNavigator";
-import { Country } from "../types/country";
-import { fetchEuropeanCountries } from "../api/CountriesApi";
+import CountryListItem from "../components/CountryListItem";
+import { useEuropeanCountries } from "../hooks/useEuropeanCountries";
 
-type Props = NativeStackScreenProps<RootStackParamList, "CountriesList">;
+import { Searchbar } from "react-native-paper";
+import Loading from "../components/Loading";
+import ErrorMessage from "../components/ErrorMessage";
 
-const CountriesListScreen: React.FC<Props> = ({ navigation }) => {
-  const [countries, setCountries] = useState<Country[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string>("")
+type CountriesListScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  "CountriesList"
+>;
 
- useEffect(() => {
-   const getCountries = async () => {
-     try {
-       const data = await fetchEuropeanCountries();
-       setCountries(data);
-     } catch (error: any) {
-       setError(error.message);
-     } finally {
-       setLoading(false);
-     }
-   };
-   getCountries();
- }, []);
+const CountriesListScreen: React.FC<CountriesListScreenProps> = ({
+  navigation,
+}) => {
+  const { countries, loading, error, nameSearch, setNameSearch } =
+    useEuropeanCountries();
 
+  if (loading) return <Loading />;
 
-  if (loading) return <ActivityIndicator style={styles.loader} size="large" />;
-  if (error) return <Text style={styles.error}>{error}</Text>;
-
+  if (error) return <ErrorMessage error={error} />;
 
   return (
-    <FlatList
-      data={countries}
-      renderItem={({ item }) => (
-        <Text
-          onPress={() =>
-            navigation.navigate("CountryDetail", { country: item })
-          }
-        >
-          {item.name.common}
-        </Text>
-      )}
-    />
+    <View style={styles.container}>
+      <Searchbar
+        placeholder="Search countries..."
+        onChangeText={setNameSearch}
+        value={nameSearch}
+        style={styles.searchInput}
+      />
+
+      <FlatList
+        data={countries}
+        keyExtractor={(item) => item.name.common}
+        contentContainerStyle={styles.listContent}
+        renderItem={({ item }) => (
+          <CountryListItem
+            country={item}
+            onPress={() =>
+              navigation.navigate("CountryDetail", { country: item })
+            }
+          />
+        )}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  loader: { flex: 1, justifyContent: "center", alignItems: "center" },
-  error: {
+  container: {
     flex: 1,
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "red",
+  },
+  searchInput: {
+    margin: 12,
+  },
+  listContent: {
+    paddingHorizontal: 8,
+    paddingBottom: 32,
   },
 });
 
