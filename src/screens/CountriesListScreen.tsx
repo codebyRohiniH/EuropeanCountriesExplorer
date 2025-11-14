@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import { useNavigation } from "@react-navigation/native";
 import { RootNavigationProp } from "../navigation/RootNavigator";
+import EmptyListComponent from "../components/EmptyListComponent";
 
 const CountriesListScreen: React.FC = () => {
   const { countries, loading, error, nameSearch, setNameSearch } =
@@ -29,7 +30,7 @@ const CountriesListScreen: React.FC = () => {
 
       <FlatList
         data={countries}
-        keyExtractor={(item) => item.name.common}
+        keyExtractor={(item) => item.name.common + (item.capital?.[0] || "")}
         contentContainerStyle={styles.listContent}
         renderItem={({ item }) => (
           <CountryListItem
@@ -39,6 +40,11 @@ const CountriesListScreen: React.FC = () => {
             }
           />
         )}
+        ListEmptyComponent={<EmptyListComponent />}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize={7}
+        removeClippedSubviews={true}
       />
     </View>
   );

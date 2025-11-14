@@ -42,13 +42,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     elevation: 2,
     backgroundColor: "#eeedecff",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
 
   flag: {

@@ -37,7 +37,7 @@ const CountryListItem: React.FC<CountryListItemProps> = ({
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: "#E5E4E2",
+    backgroundColor: "#eeedecff",
     marginHorizontal: 8,
     marginVertical: 6,
     paddingHorizontal: 12,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   image: {
-   borderRadius:16
+    borderRadius: 16,
   },
   title: {
     fontWeight: "600",
