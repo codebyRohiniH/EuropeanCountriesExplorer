@@ -22,7 +22,14 @@ const AppNavigator = () => {
       <Stack.Screen
         name="CountryDetail"
         component={CountryDetailScreen}
-        options={{ headerTitle: "" }}
+        options={({ route }) => {
+          const countryName =
+            route.params?.country?.name?.common ?? "Country Detail";
+          return {
+            title: countryName,
+            headerBackTitle: "Back",
+          };
+        }}
       />
     </Stack.Navigator>
   );
