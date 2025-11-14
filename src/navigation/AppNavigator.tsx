@@ -2,8 +2,15 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CountriesListScreen from "../screens/CountriesListScreen";
 import CountryDetailScreen from "../screens/CountryDetailScreen";
+import { Country } from "../types/country";
 
-const Stack = createNativeStackNavigator();
+
+export type RootStackParamList = {
+  CountriesList: undefined;
+  CountryDetail: { country: Country };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
   return (
