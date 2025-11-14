@@ -1,18 +1,13 @@
 import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/AppNavigator";
+import { useRoute, RouteProp } from "@react-navigation/native";
 import { Text, Card } from "react-native-paper";
+import { RootStackParamList } from "../navigation/RootNavigator";
 
-type CountryDetailScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  "CountryDetail"
->;
-
-const CountryDetailScreen: React.FC<CountryDetailScreenProps> = ({ route }) => {
-  const {
-    country: { area, capital, flags, name, population },
-  } = route.params || {};
+const CountryDetailScreen: React.FC = () => {
+  const route = useRoute<RouteProp<RootStackParamList, "CountryDetail">>();
+  const { country } = route.params;
+  const { area, capital, flags, name, population } = country || {};
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

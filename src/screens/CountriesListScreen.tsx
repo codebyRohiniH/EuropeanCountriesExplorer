@@ -1,24 +1,18 @@
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/AppNavigator";
 import CountryListItem from "../components/CountryListItem";
 import { useEuropeanCountries } from "../hooks/useEuropeanCountries";
 
 import { Searchbar } from "react-native-paper";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
+import { useNavigation } from "@react-navigation/native";
+import { RootNavigationProp } from "../navigation/RootNavigator";
 
-type CountriesListScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  "CountriesList"
->;
-
-const CountriesListScreen: React.FC<CountriesListScreenProps> = ({
-  navigation,
-}) => {
+const CountriesListScreen: React.FC = () => {
   const { countries, loading, error, nameSearch, setNameSearch } =
     useEuropeanCountries();
+  const navigation = useNavigation<RootNavigationProp<"CountriesList">>();
 
   if (loading) return <Loading />;
 
@@ -41,7 +35,7 @@ const CountriesListScreen: React.FC<CountriesListScreenProps> = ({
           <CountryListItem
             country={item}
             onPress={() =>
-              navigation.navigate("CountryDetail", { country: item })
+              navigation?.navigate("CountryDetail", { country: item })
             }
           />
         )}
