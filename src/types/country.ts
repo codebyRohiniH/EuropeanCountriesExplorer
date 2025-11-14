@@ -1,9 +1,10 @@
 export type Country = {
+  subregion: string;
   name: { common: string };
   capital: string[];
   population: number;
   area: number;
-  flag: {
+  flags: {
     png: string;
   };
 };
