@@ -15,7 +15,7 @@ export const useEuropeanCountries = () => {
         const data = await fetchEuropeanCountries();
         setAllCountries(data);
       } catch (error: any) {
-        setError(error.message || "An error occurred while fetching countries.");
+        setError(error.message);
       } finally {
         setLoading(false);
       }
