@@ -23,7 +23,11 @@ const CountryListItem: React.FC<CountryListItemProps> = ({
         left={() => (
           <List.Image
             variant="image"
-            source={{ uri: flags?.png }}
+            source={
+              flags?.png
+                ? { uri: flags.png }
+                : require("../../assets/placeholder.png")
+            }
             style={styles.image}
           />
         )}

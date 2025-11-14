@@ -12,7 +12,14 @@ const CountryDetailScreen: React.FC = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Card mode="outlined" style={styles.card}>
-        <Card.Cover source={{ uri: flags?.png }} style={styles.flag} />
+        <Card.Cover
+          source={
+            flags?.png
+              ? { uri: flags.png }
+              : require("../../assets/placeholder.png")
+          }
+          style={styles.flag}
+        />
         <Card.Content style={styles.content}>
           <Text variant="headlineMedium" style={styles.name}>
             {name?.common}
