@@ -4,7 +4,6 @@ import CountriesListScreen from "../screens/CountriesListScreen";
 import CountryDetailScreen from "../screens/CountryDetailScreen";
 import { Country } from "../types/country";
 
-
 export type RootStackParamList = {
   CountriesList: undefined;
   CountryDetail: { country: Country };
@@ -17,11 +16,13 @@ const AppNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="CountriesList"
-        component={CountriesListScreen}   
+        component={CountriesListScreen}
+        options={{ title: "European Countries" }}
       />
       <Stack.Screen
         name="CountryDetail"
-        component={CountryDetailScreen} 
+        component={CountryDetailScreen}
+        options={{ headerTitle: "" }}
       />
     </Stack.Navigator>
   );
