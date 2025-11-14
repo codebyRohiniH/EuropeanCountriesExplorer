@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage should match snapshot 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          {
+            "color": "#ec6b6bff",
+          },
+        ],
+      ]
+    }
+  >
+    Something went wrong
+  </Text>
+</RNCSafeAreaView>
+`;
