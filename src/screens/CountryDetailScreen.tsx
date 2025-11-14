@@ -17,19 +17,19 @@ const CountryDetailScreen: React.FC<CountryDetailScreenProps> = ({ route }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Card mode="outlined" style={styles.card}>
-        <Card.Cover source={{ uri: flags.png }} style={styles.flag} />
+        <Card.Cover source={{ uri: flags?.png }} style={styles.flag} />
         <Card.Content style={styles.content}>
           <Text variant="headlineMedium" style={styles.name}>
-            {name.common}
+            {name?.common}
           </Text>
           <Text variant="bodyLarge" style={styles.detail}>
             Capital: {capital?.[0] || "N/A"}
           </Text>
           <Text variant="bodyLarge" style={styles.detail}>
-            Population: {population.toLocaleString()}
+            Population: {population?.toLocaleString()}
           </Text>
           <Text variant="bodyLarge" style={styles.detail}>
-            Area: {area.toLocaleString()} km²
+            Area: {area?.toLocaleString()} km²
           </Text>
         </Card.Content>
       </Card>
