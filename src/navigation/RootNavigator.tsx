@@ -1,8 +1,14 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import CountriesListScreen from "../screens/CountriesListScreen";
 import CountryDetailScreen from "../screens/CountryDetailScreen";
 import { Country } from "../types/country";
+
+export type RootNavigationProp<RouteName extends keyof RootStackParamList> =
+  NativeStackNavigationProp<RootStackParamList, RouteName>;
 
 export type RootStackParamList = {
   CountriesList: undefined;
@@ -11,7 +17,7 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const AppNavigator = () => {
+const RootNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -35,4 +41,4 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;
+export default RootNavigator;
