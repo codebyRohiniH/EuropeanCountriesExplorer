@@ -1,5 +1,4 @@
 export type Country = {
-  subregion: string;
   name: { common: string };
   capital: string[];
   population: number;
