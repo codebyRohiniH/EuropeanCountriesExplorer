@@ -5,7 +5,7 @@ import { ActivityIndicator } from "react-native-paper";
 
 const Loading: React.FC = () => {
   return (
-    <SafeAreaView style={styles.center}>
+    <SafeAreaView testID="loading-indicator" style={styles.center}>
       <ActivityIndicator animating size="large" />
     </SafeAreaView>
   );

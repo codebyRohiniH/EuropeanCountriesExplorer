@@ -17,6 +17,7 @@ exports[`ErrorMessage should match snapshot 1`] = `
       "justifyContent": "center",
     }
   }
+  testID="error-message"
 >
   <Text
     style={

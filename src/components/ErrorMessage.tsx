@@ -9,7 +9,7 @@ type ErrorMessageProps = {
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ error }) => {
   return (
-    <SafeAreaView style={styles.center}>
+    <SafeAreaView testID="error-message" style={styles.center}>
       <Text variant="titleLarge" style={styles.errorText}>
         {error}
       </Text>
