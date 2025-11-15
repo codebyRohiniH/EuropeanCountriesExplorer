@@ -44,9 +44,9 @@ A React Native app built with Expo that allows users to explore European countri
    ```
 2. Install dependencies:
    ```sh
-   yarn install
+    yarn install
    # or
-   npm install
+   npm install --legacy-peer-deps
    ```
 3. Run the app:
    ```sh
