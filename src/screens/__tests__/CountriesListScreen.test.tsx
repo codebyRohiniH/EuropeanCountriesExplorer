@@ -54,4 +54,25 @@ describe("CountriesListScreen", () => {
     // THEN
     expect(screen).toMatchSnapshot();
   });
+
+   it("should show the list component when countries list is not empty", () => {
+     // GIVEN
+     (useEuropeanCountries as jest.Mock).mockReturnValue({
+       countries: [
+         { name: { common: "Finland" }, cca2: "FI" },
+         { name: { common: "Sweden" }, cca2: "SE" },
+       ],
+       loading: false,
+       error: "",
+       nameSearch: "",
+       setNameSearch: jest.fn(),
+     });
+
+     // WHEN
+     render(<CountriesListScreen />);
+
+     // THEN
+     expect(screen.getByText("Finland")).toBeTruthy();
+     expect(screen.getByText("Sweden")).toBeTruthy();
+   });
 });
